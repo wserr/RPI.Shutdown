@@ -1,6 +1,6 @@
-import sys
+import os
+import time
 import RPi.GPIO as GPIO
-from subprocess import call
 
 looping = True
 
@@ -16,13 +16,11 @@ GPIO.setup(reb,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 def shutdown(channel):
 	setLoopingToFalse()
-	print("shutdown!")
-	call("sudo shutdown -h now", shell=True)
+	os.system("sudo shutdown -h now")
 
 def reboot(channel):
 	setLoopingToFalse()
-	print("reboot!")
-	call("sudo reboot", shell=True)
+	os.system("sudo shutdown -r now")
 
 def setLoopingToFalse():
 	global looping
@@ -35,11 +33,6 @@ GPIO.add_event_detect(reb,GPIO.FALLING,bouncetime=500)
 GPIO.add_event_callback(reb,reboot)
 
 
-try:
-	while looping:
-		# Only purpose is to keep service running
-	        p=1
-finally:
-	sys.stdout.close()
-	sys.stderr.close()
-	GPIO.cleanup()
+while looping:
+	# Only purpose is to keep service running
+        time.sleep(1)
