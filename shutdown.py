@@ -1,3 +1,4 @@
+import sys
 import RPi.GPIO as GPIO
 from subprocess import call
 
@@ -37,6 +38,8 @@ GPIO.add_event_callback(reb,reboot)
 try:
 	while looping:
 		# Only purpose is to keep service running
-        p=1
+	        p=1
 finally:
+	sys.stdout.close()
+	sys.stderr.close()
 	GPIO.cleanup()
