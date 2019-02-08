@@ -1,4 +1,4 @@
-# RaspberryPi_ShutdownButton
+# RPI.Shutdown
 This project describes how to make shutdown and reboot buttons for your raspberry pi
 
 
